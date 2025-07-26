@@ -1,6 +1,8 @@
 const text = document.querySelector("#text");
 const count = document.querySelector("#counter");
 const leftCounter = document.querySelector("#leftCounter");
+const counterNumber = document.querySelector("#counterNumber");
+const counterString = document.querySelector("#counterString");
 
 const maxCounter = 20;
 let currentCount = 0;
@@ -24,6 +26,15 @@ text.addEventListener("input", () => {
     }
     text.value = result;
   }
+  const currentText = text.value;
+  counterNumber.textContent = currentText
+    .split("")
+    .filter((item) => !isNaN(item) && item.trim() !== "").length;
+
+  counterString.textContent = currentText
+    .split("")
+    .filter((item) => isNaN(item) && item.trim() !== "").length;
+
   currentCount = text.value.split("").filter((item) => item != " ").length;
   leftCounter.textContent = maxCounter - currentCount;
   count.textContent = currentCount;
